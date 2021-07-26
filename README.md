@@ -6,12 +6,20 @@ install virtualenv
 open terminal in project
 
 
-create venv 
-WIINDOWS
+# create venv 
+# WIINDOWS
 python -m venv venv
+
+
 .\venv\Scripts\activate
-Linux
+
+
+# Linux
+
+
 virtualenv venv
+
+
 source venv/bin/activate
 
 
