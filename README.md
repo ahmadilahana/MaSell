@@ -30,5 +30,5 @@ pip install -r requirements.txt
 engine = create_engine("mysql+pymysql://[username]:[password]@[host]:[port]/[schema/dbname]")
 
 # Start the service:
-uvicorn app:app --reload
+uvicorn main:app --reload
 ```
