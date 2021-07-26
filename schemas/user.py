@@ -1,4 +1,8 @@
 from pydantic import BaseModel
+from datetime import datetime
+from fastapi import Request
+
+
 
 class User(BaseModel):
     firsName: str
@@ -11,6 +15,5 @@ class User(BaseModel):
     verifyCode: int
     registerAt: int
     deviceId: int
-    IpAddress: str
     isActived: int
     password: str
