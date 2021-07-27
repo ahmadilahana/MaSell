@@ -19,4 +19,5 @@ users = Table(
     Column('IpAddress', String(255)),
     Column('isActived', SmallInteger),
     Column('password', String(255)),
+    Column('phone', String(15)),
 )
