@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request
 from fastapi.exceptions import HTTPException
 from sqlalchemy.sql.expression import false
-from schemas.user import User, ValidPhoneNumber
+from schemas.user import RealStr, User, ValidPhoneNumber
 from config.db import conn
 from models.main import users
 
@@ -12,7 +12,7 @@ async def read_user():
     return conn.execute(users.select()).fetchall()
 
 @user.get("/users/{userId}")
-async def read_user_by_id(userId: int):
+async def read_user_by_id(userId: RealStr):
     return conn.execute(users.select().where(users.c.userId == userId)).fetchall()
 
 # @user.get("/users/getId/")
@@ -22,8 +22,8 @@ async def read_user_by_id(userId: int):
 
 @user.post("/users/add")
 async def create_user(user: User, request: Request):
-    validPhone= ValidPhoneNumber(user.phone)
-    if validPhone == True:
+    # validPhone= ValidPhoneNumber(user.phone)
+    # if validPhone == True:
         return conn.execute(users.insert().values(
             firsName= user.firsName,
             lastName= user.lastName,
@@ -40,10 +40,8 @@ async def create_user(user: User, request: Request):
             password= user.password,
             phone= user.phone
         ))
-        return conn.execute(users.select()).fetchall()
-    else:
-        raise HTTPException(status_code=404)
-        return "Number Phone is Not valid"
+    # else:
+    #     return "Number Phone is Not valid"
 
 @user.put("/users/update{userId}")
 async def update_user(id: int, user: User):
@@ -66,9 +64,9 @@ async def update_user(id: int, user: User):
     return conn.execute(users.select()).fetchall()
 
 
-@user.delete("/users/delete{userId}")
-async def delete_by_id(id: int, user: User):
-    conn.execute(users.delete().where(user.c.userId == userId))
+@user.delete("/users/delete/{userId}")
+async def delete_by_id(userId: int):
+    conn.execute(users.delete().where(users.c.userId == userId))
     return conn.execute(users.select()).fetchall()
 
 # @user.post("/login/")

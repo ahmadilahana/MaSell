@@ -71,4 +71,4 @@ class User(BaseModel):
     deviceId: int = None
     isActived: int = None
     password: str = None
-    phone: RealStr = None#Field(None, max_length=15, regex="^[-+]?[0-9]+$" )
+    phone: RealStr = None #Field(None, max_length=15, regex="^[-+]?[0-9]+$" )
